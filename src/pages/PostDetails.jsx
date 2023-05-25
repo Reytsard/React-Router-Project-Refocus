@@ -8,7 +8,7 @@ function PostDetails() {
   const selectedPost = posts[locationPathID - 1];
   return (
     <div className="post">
-      <NavLink path="/posts">{`<- Back`}</NavLink>
+      <NavLink to="/posts" className="backButton">{`<- Back`}</NavLink>
       <h1>{selectedPost.title}</h1>
       <div className="author">
         {/* <img src="" alt="" /> */}
@@ -20,30 +20,36 @@ function PostDetails() {
         <div className="postLikes"></div>
         <div className="postComments"></div>
       </div>
-      <div className="postLeaveComment">
-        <h3>Leave a Comment:</h3>
-        <textarea
-          name="postComment"
-          id="postComment"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <Button type="submit" name="submitCommment">
-          Send
-        </Button>
-      </div>
-      <div className="commentsSection">
-        <h3>Comments:</h3>
-        {selectedPost.comments.map((comment) => (
-          <div className="comment">
-            <div className="commentAuthor">{comment.author}</div>
-            <div className="commentText">{comment.text}</div>
-            <div className="dateAndLikes">
-              <div className="commentDate">{comment.date}</div>
-              <div className="commentLikes">{comment.likes}</div>
+      <div className="commentSection">
+        <div className="postLeaveComment">
+          <h3>Leave a Comment:</h3>
+          <textarea
+            name="postComment"
+            id="postComment"
+            cols="50"
+            rows="10"
+          ></textarea>
+          <Button type="submit" name="submitComment">
+            Send
+          </Button>
+        </div>
+        <div className="commentsSection">
+          <h3>Comments:</h3>
+          {selectedPost.comments.map((comment) => (
+            <div className="comment" key={comment.author}>
+              <div className="commentAuthor">{comment.author}</div>
+              <div className="commentText">{comment.text}</div>
+              <div className="dateAndLikes">
+                <div className="commentDate">{comment.date}</div>
+                <div
+                  className={comment.isLiked ? "likedButton" : "defaultLike"}
+                >
+                  {comment.likes}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

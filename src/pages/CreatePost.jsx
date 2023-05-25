@@ -13,11 +13,17 @@ function CreatePost() {
       <h2>New Post</h2>
       <div className="titleBox">
         <h3>Add Title*</h3>
-        <input type="text" placeholder="Title Here" />
+        <input type="text" placeholder="Title Here" className="TitleBox" />
       </div>
       <div className="textBox">
         <h3>Add Text*</h3>
-        <textarea name="text" id="textBox" cols="30" rows="10"></textarea>
+        <textarea
+          name="text"
+          id="textBox"
+          cols="30"
+          rows="10"
+          className="TextBox"
+        ></textarea>
       </div>
       <PostImage addImageSuccessful={handleImageSuccess} />
       <Button type="submit" name="post-btn">

@@ -115,8 +115,288 @@ body {
     }
   }
 }
+.cards a {
+  text-decoration: none;
+  .card {
+    .cardInfo {
+      .cardInfo-texts {
+        .cardInfo-title {
+          color: black;
+        }
+      }
+    }
+  }
+}
+.cards {
+  height: 100%;
+  margin: 0px 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  .card {
+    width: 320px;
+    height: 320px;
+    background-color: variables.$color2;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 165px 135px;
+
+    .cardImg {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      height: 165px;
+      width: 100%;
+    }
+    .cardInfo-texts {
+      .cardInfo-title {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .cardInfo-text {
+        color: #625f87;
+      }
+    }
+    .cardInfo-stats {
+      font-size: 9px;
+      color: variables.$color4;
+    }
+    .cardInfo {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .cardInfo-text {
+        height: 40px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+      }
+      .cardInfo-line {
+        width: 100%;
+        border: 0.5px solid variables.$color4;
+        margin: 5px 0px;
+      }
+      .cardInfo-stats,
+      .cardInfo-stats-dateAuthor,
+      .cardInfo-stats-commentLike {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cardInfo-comments,
+      .cardInfo-likes {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .fa {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+.card:hover {
+  background-color: #d7f8ff;
+}
+.posts .options {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 80px 40px 80px;
+  .all-posts-btn {
+    margin-right: 10px;
+    @include mixins.normalButton();
+  }
+  .favorites-btn {
+    @include mixins.normalButton();
+  }
+  .all-posts-btn:hover,
+  .favorites-btn:hover {
+    @include mixins.buttonHovered();
+  }
+  .create-post-btn {
+    padding: 13px 20px 13px 49px;
+    text-decoration: none;
+    color: variables.$color4;
+    border-radius: 10px;
+    border: 1px solid variables.$color4;
+  }
+  .create-post-btn:hover {
+    border: 1px solid variables.$color9;
+    color: variables.$color9;
+  }
+  .create-post-btn:active {
+    border: 1px solid variables.$color9;
+    background-color: variables.$color9;
+    color: variables.$color1;
+  }
+}
+.create-post {
+  background-color: variables.$color1;
+  color: black;
+  padding: 60px 80px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 30px 50px 300px 270px 50px;
+  .back-btn,
+  h2,
+  .titleBox,
+  .textBox,
+  .post-btn {
+    grid-column: 1/2;
+  }
+  .back-btn {
+    grid-row: 1/2;
+    border: 1px solid black;
+    width: 100px;
+    display: grid;
+    place-items: center;
+    border-radius: 40px;
+    height: 2rem;
+    text-decoration: none;
+    color: black;
+  }
+  .back-btn:hover {
+    opacity: 0.7;
+  }
+  h2 {
+    grid-row: 2/3;
+  }
+  .titleBox {
+    grid-row: 3/4;
+  }
+  .image-uploader {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+  .TitleBox {
+    width: 90%;
+    height: 6rem;
+    font-size: 3rem;
+    border: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+  .TextBox {
+    width: 90%;
+    background-color: white;
+    color: black;
+  }
+  .post-btn:disabled {
+    width: 140px;
+    border-radius: 6px;
+    border: 0;
+    font-size: 16px;
+    background-color: gray;
+  }
+  .post-btn {
+    width: 140px;
+    border-radius: 6px;
+    border: 0;
+    font-size: 16px;
+    background-color: variables.$color9;
+  }
+}
 .selected {
   color: variables.$color9;
+}
+.post {
+  padding: 60px 80px;
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  grid-template-rows: repeat(3, 50px) 100px 30px 100px 1fr;
+  .backButton {
+    width: 75px;
+    display: grid;
+    place-items: center;
+    background-color: white;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    border-radius: 40px;
+    border: 1px solid black;
+    margin: 5px 0px;
+    text-align: center;
+    font-size: 12px;
+  }
+  h1,
+  h5 {
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  .author {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    display: flex;
+    align-items: center;
+    h5 {
+      margin-right: 10px;
+    }
+  }
+  .postText {
+    grid-column: 1/2;
+    grid-row: 4/5;
+    display: grid;
+    align-items: center;
+  }
+  .likesAndComments {
+    grid-column: 1/2;
+    grid-row: 5/6;
+  }
+  .commentSection {
+    grid-column: 1/2;
+    grid-row: 6/8;
+    .postLeaveComment {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .submitComment {
+        width: 200px;
+        height: 40px;
+        align-self: flex-end;
+      }
+    }
+  }
+  img {
+    grid-column: 2/3;
+    grid-row: 2 / span 4;
+  }
+  .commentsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .comment {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.image-uploader:hover {
+  opacity: 0.4;
+  label {
+    opacity: 1;
+    font-weight: bold;
+    display: block !important;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -267,161 +547,6 @@ body {
       width: 30px;
       background-color: variables.$color5;
       border-radius: 100%;
-    }
-  }
-  .cards a {
-    text-decoration: none;
-    .card {
-      .cardInfo {
-        .cardInfo-texts {
-          .cardInfo-title {
-            color: black;
-          }
-        }
-      }
-    }
-  }
-  .cards {
-    height: 100%;
-    margin: 0px 80px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: 10px;
-    color: black;
-    .card {
-      width: 320px;
-      height: 320px;
-      background-color: variables.$color1;
-      border-radius: 6px;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 165px 135px;
-
-      .cardImg {
-        grid-column: 1/2;
-        grid-row: 1/2;
-        height: 165px;
-        width: 100%;
-      }
-      .cardInfo-texts {
-        .cardInfo-title {
-          font-size: 20px;
-          font-weight: 700;
-        }
-        .cardInfo-text {
-          color: #625f87;
-        }
-      }
-      .cardInfo-stats {
-        font-size: 9px;
-        color: variables.$color4;
-      }
-      .cardInfo {
-        grid-column: 1/2;
-        grid-row: 2/3;
-        padding: 10px 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .cardInfo-text {
-          height: 40px;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-size: 14px;
-        }
-        .cardInfo-line {
-          width: 100%;
-          border: 0.5px solid variables.$color4;
-          margin: 5px 0px;
-        }
-        .cardInfo-stats,
-        .cardInfo-stats-dateAuthor,
-        .cardInfo-stats-commentLike {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .cardInfo-comments,
-        .cardInfo-likes {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          .fa {
-            font-size: 1rem;
-          }
-        }
-      }
-    }
-  }
-  .card:hover {
-    background-color: #d7f8ff;
-  }
-  .posts .options {
-    display: flex;
-    justify-content: space-between;
-    padding: 60px 80px 40px 80px;
-    .all-posts-btn {
-      margin-right: 10px;
-      @include mixins.normalButton();
-    }
-    .favorites-btn {
-      @include mixins.normalButton();
-    }
-    .all-posts-btn:hover,
-    .favorites-btn:hover {
-      @include mixins.buttonHovered();
-    }
-    .create-post-btn {
-      padding: 13px 20px 13px 49px;
-      text-decoration: none;
-      color: variables.$color4;
-      border-radius: 10px;
-      border: 1px solid variables.$color4;
-    }
-    .create-post-btn:hover {
-      border: 1px solid variables.$color9;
-      color: variables.$color9;
-    }
-    .create-post-btn:active {
-      border: 1px solid variables.$color9;
-      background-color: variables.$color9;
-      color: variables.$color1;
-    }
-  }
-  .create-post {
-    background-color: variables.$color1;
-    color: black;
-    padding: 60px 80px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 30px 50px 300px 400px 50px;
-    align-items: center;
-    .back-btn,
-    h2,
-    .titleBox,
-    .textBox,
-    .post-btn {
-      grid-column: 1/2;
-    }
-    .back-btn {
-      grid-row: 1/2;
-    }
-    h2 {
-      grid-row: 2/3;
-    }
-    .titleBox {
-      grid-row: 3/4;
-    }
-    .image-uploader {
-      grid-column: 2/3;
-      grid-row: 3/4;
     }
   }
 }

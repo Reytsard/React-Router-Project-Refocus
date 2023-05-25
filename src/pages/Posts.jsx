@@ -52,6 +52,7 @@ function Posts() {
           </NavLink>
         ))}
       </div>
+      <div className="favorite-cards"></div>
     </div>
   );
 }
