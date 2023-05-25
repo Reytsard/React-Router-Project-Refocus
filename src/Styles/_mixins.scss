@@ -1,0 +1,30 @@
+@use "variables";
+
+@mixin buttonHovered() {
+  border: 1px solid variables.$color9;
+  i {
+    color: variables.$color9;
+  }
+}
+
+@mixin buttonActive() {
+  background-color: variables.$color9;
+  i {
+    color: variables.$color1;
+  }
+}
+
+@mixin heartHovered() {
+  color: variables.$color9;
+}
+
+@mixin heartActive() {
+  color: variables.$color9;
+}
+
+@mixin normalButton() {
+  padding: 16px 20px;
+  color: variables.$color4;
+  border-radius: 40px;
+  border: 1px solid variables.$color4;
+}

@@ -1,0 +1,443 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+#header {
+  height: 90px;
+  padding: 0;
+  margin: 0;
+  background-color: #192140;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  color: #dcf10d;
+}
+#header .headerLogo {
+  margin: 0;
+  padding: 0;
+  margin-left: 15px;
+}
+#header .menu-burger {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #9d9db5;
+  display: grid;
+  place-items: center;
+  color: #9d9db5;
+  border-radius: 100%;
+  margin-right: 15px;
+}
+#header .menu-burger:hover {
+  border: 1px solid #0266ff;
+}
+#header .menu-burger:hover i {
+  color: #0266ff;
+}
+#header .menu-burger:active {
+  background-color: #0266ff;
+}
+#header .menu-burger:active i {
+  color: #ffffff;
+}
+#header .headerOptions {
+  display: none;
+}
+
+#footer {
+  height: 450px;
+  width: 100%;
+  background-color: #10131c;
+  font-family: "inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+#footer .footerCardContent {
+  color: #d7f8ff;
+  font-size: 12px;
+  display: flex;
+  gap: 20px;
+}
+#footer .footerCardContent .footerCardContentRow {
+  display: flex;
+  gap: 20px;
+}
+#footer .footerCardContent i:hover {
+  border: 1px solid #0266ff;
+}
+#footer .footerCardContent i:hover i {
+  color: #0266ff;
+}
+#footer .footerCardContent i:active {
+  background-color: #0266ff;
+}
+#footer .footerCardContent i:active i {
+  color: #ffffff;
+}
+#footer .footerCardTitle {
+  color: #ffffff;
+  font-weight: 700;
+}
+#footer .footerCard {
+  padding-left: 0;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 15px;
+}
+#footer .footerCard:nth-child(1) {
+  padding-top: 40px;
+}
+#footer .footerCard:nth-child(1) .footerCardContent {
+  display: flex;
+  flex-direction: column;
+}
+#footer .footerCard:nth-child(3) .footerCardContent {
+  flex-direction: row;
+  gap: 13.33px;
+}
+#footer .footerCard:nth-child(3) .footerCardTitle {
+  color: #9d9db5;
+}
+#footer .footerCard:nth-child(3) .fa {
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: #192140;
+  border-radius: 100%;
+}
+#footer .footerCard:nth-child(4) {
+  opacity: 0.4;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  padding-bottom: 30px;
+}
+#footer .footerCard:nth-child(4) .footerCardContentRow {
+  gap: 10px;
+}
+
+.selected {
+  color: #0266ff;
+}
+
+@media only screen and (min-width: 1024px) {
+  #header {
+    width: 100%;
+    height: 84px;
+    background-color: #192140;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #header .headerLogo {
+    margin-left: 80px;
+    padding: 0;
+    font-size: 18.75px;
+    font-family: sans-serif;
+    color: #dcf10d;
+  }
+  #header .headerOptions {
+    display: block;
+    margin-right: 80px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  #header .headerOptions ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+  }
+  #header .headerOptions ul a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  #header .headerOptions ul .signUpOption {
+    margin-left: 30px;
+    color: #9d9db5;
+  }
+  #header .headerOptions ul .logInOption {
+    width: 86px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #0266ff;
+    color: #0266ff;
+    border-radius: 40px;
+  }
+  #header .headerOptions ul li:hover,
+  #header .headerOptions ul li:active,
+  #header .headerOptions ul a:hover,
+  #header .headerOptions ul a:active,
+  #header .headerOptions ul .active {
+    color: #dcf10d;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+  #header .headerOptions ul #logInButton:hover {
+    border: 1px solid #0266ff;
+  }
+  #header .headerOptions ul #logInButton:hover i {
+    color: #0266ff;
+  }
+  #header .headerOptions ul #logInButton:active {
+    background-color: #0266ff;
+  }
+  #header .headerOptions ul #logInButton:active i {
+    color: #ffffff;
+  }
+  #header .menu-burger {
+    display: none;
+  }
+  #footer {
+    height: 274px;
+    width: 100%;
+    background-color: #10131c;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    font-family: "Inter", sans-serif;
+    gap: 0;
+    position: static;
+    bottom: 0;
+    margin-top: 50px;
+  }
+  #footer .footerCardContent {
+    color: #d7f8ff;
+    font-size: 12px;
+    display: flex;
+    gap: 20px;
+  }
+  #footer .footerCardContent .footerCardContentRow {
+    display: flex;
+    gap: 20px;
+  }
+  #footer .footerCard {
+    padding-left: 0;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #footer .footerCard:nth-child(1) {
+    padding-top: 0;
+    margin-top: 60px;
+    margin-left: 80px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  #footer .footerCard:nth-child(1) .footerCardContent {
+    flex-direction: row;
+  }
+  #footer .footerCard:nth-child(2) {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin-bottom: 60px;
+    margin-left: 80px;
+    margin-top: 20px;
+  }
+  #footer .footerCard:nth-child(3) {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+  #footer .footerCard:nth-child(3) .footerCardContent {
+    flex-direction: row;
+    gap: 15px;
+  }
+  #footer .footerCard:nth-child(4) {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    flex-direction: row;
+    align-items: flex-end;
+    opacity: 0.4;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  #footer .footerCard:nth-child(4) .footerCardContentRow {
+    gap: 10px;
+  }
+  #footer .footerCardTitle {
+    color: #ffffff;
+    font-weight: 700;
+  }
+  #footer .fa {
+    font-size: 1rem;
+    display: grid;
+    place-items: center;
+    height: 30px;
+    width: 30px;
+    background-color: #192140;
+    border-radius: 100%;
+  }
+  .cards a {
+    text-decoration: none;
+  }
+  .cards a .card .cardInfo .cardInfo-texts .cardInfo-title {
+    color: black;
+  }
+  .cards {
+    height: 100%;
+    margin: 0px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+  .cards .card {
+    width: 320px;
+    height: 320px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 165px 135px;
+  }
+  .cards .card .cardImg {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 165px;
+    width: 100%;
+  }
+  .cards .card .cardInfo-texts .cardInfo-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .cards .card .cardInfo-texts .cardInfo-text {
+    color: #625f87;
+  }
+  .cards .card .cardInfo-stats {
+    font-size: 9px;
+    color: #9d9db5;
+  }
+  .cards .card .cardInfo {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cards .card .cardInfo .cardInfo-text {
+    height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .cards .card .cardInfo .cardInfo-line {
+    width: 100%;
+    border: 0.5px solid #9d9db5;
+    margin: 5px 0px;
+  }
+  .cards .card .cardInfo .cardInfo-stats,
+  .cards .card .cardInfo .cardInfo-stats-dateAuthor,
+  .cards .card .cardInfo .cardInfo-stats-commentLike {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .cards .card .cardInfo .cardInfo-comments,
+  .cards .card .cardInfo .cardInfo-likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cards .card .cardInfo .cardInfo-comments .fa,
+  .cards .card .cardInfo .cardInfo-likes .fa {
+    font-size: 1rem;
+  }
+  .card:hover {
+    background-color: #d7f8ff;
+  }
+  .posts .options {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 80px 40px 80px;
+  }
+  .posts .options .all-posts-btn {
+    margin-right: 10px;
+    padding: 16px 20px;
+    color: #9d9db5;
+    border-radius: 40px;
+    border: 1px solid #9d9db5;
+  }
+  .posts .options .favorites-btn {
+    padding: 16px 20px;
+    color: #9d9db5;
+    border-radius: 40px;
+    border: 1px solid #9d9db5;
+  }
+  .posts .options .all-posts-btn:hover,
+  .posts .options .favorites-btn:hover {
+    border: 1px solid #0266ff;
+  }
+  .posts .options .all-posts-btn:hover i,
+  .posts .options .favorites-btn:hover i {
+    color: #0266ff;
+  }
+  .posts .options .create-post-btn {
+    padding: 13px 20px 13px 49px;
+    text-decoration: none;
+    color: #9d9db5;
+    border-radius: 10px;
+    border: 1px solid #9d9db5;
+  }
+  .posts .options .create-post-btn:hover {
+    border: 1px solid #0266ff;
+    color: #0266ff;
+  }
+  .posts .options .create-post-btn:active {
+    border: 1px solid #0266ff;
+    background-color: #0266ff;
+    color: #ffffff;
+  }
+  .create-post {
+    background-color: #ffffff;
+    color: black;
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 30px 50px 300px 400px 50px;
+    align-items: center;
+  }
+  .create-post .back-btn,
+  .create-post h2,
+  .create-post .titleBox,
+  .create-post .textBox,
+  .create-post .post-btn {
+    grid-column: 1/2;
+  }
+  .create-post .back-btn {
+    grid-row: 1/2;
+  }
+  .create-post h2 {
+    grid-row: 2/3;
+  }
+  .create-post .titleBox {
+    grid-row: 3/4;
+  }
+  .create-post .image-uploader {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+}/*# sourceMappingURL=main.css.map */
