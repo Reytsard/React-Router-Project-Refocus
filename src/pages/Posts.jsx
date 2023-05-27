@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { MyContext } from "../plugins/MyContext";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
 
 function Posts() {
   const posts = useContext(MyContext);
+  // const mapPosts = useMemo(() => {});
   return (
     <div className="posts">
       <div className="options">
@@ -24,7 +25,13 @@ function Posts() {
         {posts.map((post) => (
           <NavLink to={`${post.id}`} key={post.id} className="card">
             <div className="card" key={post.id}>
-              <div className="cardImg"></div>
+              <div className="cardImg">
+                <img
+                  src={post.image}
+                  alt={`post-${post.id}`}
+                  className="cardImage"
+                />
+              </div>
               <div className="cardInfo">
                 <div className="cardInfo-texts">
                   <div className="cardInfo-title">{post.title}</div>

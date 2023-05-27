@@ -9,6 +9,7 @@
 
 @mixin buttonActive() {
   background-color: variables.$color9;
+  color: variables.$color1;
   i {
     color: variables.$color1;
   }

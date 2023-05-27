@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useLoaderData } from "react-router-dom";
 import Button from "../components/Button";
+import { MyContext } from "../plugins/MyContext";
 
 function PostDetails() {
-  const locationPathID = location.pathname.charAt(location.pathname.length - 1);
-  const posts = useLoaderData();
-  const selectedPost = posts[locationPathID - 1];
+  const posts = useContext(MyContext);
+  const locationPathID = location.pathname.split("/");
+  const indexNum = locationPathID.slice(locationPathID.length - 1).toString();
+  const selectedPost = posts[indexNum - 1];
+  console.log(posts);
   return (
     <div className="post">
       <NavLink to="/posts" className="backButton">{`<- Back`}</NavLink>
       <h1>{selectedPost.title}</h1>
+      <img
+        src={selectedPost.image}
+        alt={`post-${selectedPost.id}`}
+        className="postImage"
+      />
       <div className="author">
-        {/* <img src="" alt="" /> */}
         <h5>{selectedPost.author}</h5>
         <h5>{selectedPost.date}</h5>
       </div>
@@ -56,8 +63,3 @@ function PostDetails() {
 }
 
 export default PostDetails;
-
-export const PostDetailsLoader = async () => {
-  const res = await fetch("http://localhost:5173/posts.json/");
-  return res.json();
-};

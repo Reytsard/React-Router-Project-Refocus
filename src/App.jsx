@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { PostsList } from "./components/PostsList";
-import { PostImage } from "./components/PostImage";
 import {
   Route,
   RouterProvider,
@@ -14,21 +12,19 @@ import CreatePost from "./pages/CreatePost";
 import "./App.css";
 import "./Styles/main.css";
 import { MyContext } from "./plugins/MyContext";
-import PostDetails, { PostDetailsLoader } from "./pages/PostDetails";
+import PostDetails from "./pages/PostDetails";
 
 function App() {
   const [posts, setPosts] = useState(postsData);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route path="posts" element={<Posts />} />
+        <Route path="posts/:id" element={<PostDetails />} />
         <Route
-          path="posts/:id"
-          element={<PostDetails />}
-          loader={PostDetailsLoader}
+          path="posts/create-post"
+          element={<CreatePost addPost={setPosts} />}
         />
-        <Route path="posts/create-post" element={<CreatePost />} />
       </Route>
     )
   );
