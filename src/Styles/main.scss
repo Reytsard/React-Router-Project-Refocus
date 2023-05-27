@@ -119,6 +119,8 @@ body {
   text-decoration: none;
   .card {
     .cardInfo {
+      background-color: variables.$color2;
+      border-radius: 0 0 6px 6px;
       .cardInfo-texts {
         .cardInfo-title {
           color: black;
@@ -153,6 +155,7 @@ body {
       .cardImage {
         height: 250px;
         width: 320px;
+        border-radius: 6px 6px 0 0;
       }
     }
     .cardInfo-texts {

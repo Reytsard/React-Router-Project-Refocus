@@ -130,6 +130,10 @@ body {
 .cards a {
   text-decoration: none;
 }
+.cards a .card .cardInfo {
+  background-color: #f8f9fc;
+  border-radius: 0 0 6px 6px;
+}
 .cards a .card .cardInfo .cardInfo-texts .cardInfo-title {
   color: black;
 }
@@ -162,6 +166,7 @@ body {
 .cards .card .cardImg .cardImage {
   height: 250px;
   width: 320px;
+  border-radius: 6px 6px 0 0;
 }
 .cards .card .cardInfo-texts .cardInfo-title {
   font-size: 20px;
