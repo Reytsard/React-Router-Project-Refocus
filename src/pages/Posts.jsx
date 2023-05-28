@@ -18,7 +18,8 @@ function Posts() {
           </Button>
         </div>
         <NavLink to="create-post" className="create-post-btn">
-          Create Post
+          <i className="fa fa-plus" aria-hidden="true"></i>
+          <div>Create Post</div>
         </NavLink>
       </div>
       <div className="cards">

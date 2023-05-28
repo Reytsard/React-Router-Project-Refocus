@@ -8,7 +8,6 @@ function CreatePost({ addPost }) {
   const [image, setImage] = useState("");
   const handleImageSuccess = (imageUrl) => {
     setImage(imageUrl);
-    console.log(imageUrl);
   };
   const [title, setTitle] = useState("");
   const [textForPost, setText] = useState("");
@@ -27,8 +26,12 @@ function CreatePost({ addPost }) {
   );
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Posts have been added to list");
-    newPosts();
+    if (title === "" || textForPost === "") {
+    } else {
+      newPosts();
+      const modalDisplay = document.querySelector(".modal");
+      modalDisplay.setAttribute("style", "display:grid");
+    }
   };
 
   const newPosts = () => {
@@ -38,16 +41,17 @@ function CreatePost({ addPost }) {
       text: textForPost,
       author: "arnold",
       date: "Dec 1, 20000",
+      likes: 0,
+      isLiked: false,
       image: image,
       comments: [],
     };
-    console.log(post);
     addPost([...posts, post]);
   };
   return (
     <div className="create-post">
       <NavLink to="/posts" className="back-btn">{`<- Back`}</NavLink>
-      <form className="form">
+      <form className="form" name="createPost">
         <h2>New Post</h2>
         <div className="titleBox">
           <h3>Add Title*</h3>
@@ -57,6 +61,7 @@ function CreatePost({ addPost }) {
             type="text"
             placeholder="Title Here"
             className="TitleBox"
+            required
           />
         </div>
         <div className="textBox">
@@ -76,6 +81,12 @@ function CreatePost({ addPost }) {
           Post
         </button>
       </form>
+      <div className="modal">
+        <div className="d-box">
+          <h4>Post has beed created!</h4>
+          <NavLink to="/posts">Return to posts</NavLink>
+        </div>
+      </div>
     </div>
   );
 }

@@ -246,7 +246,11 @@ body {
   color: #0266ff;
 }
 .posts .options .create-post-btn {
-  padding: 13px 20px 13px 49px;
+  padding: 13px 10px 13px 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
   color: #9d9db5;
   border-radius: 10px;
@@ -324,14 +328,18 @@ body {
   background-color: white;
   color: black;
 }
-.create-post .form .post-btn:disabled {
+.create-post .form .post-btn:disabled,
+.create-post .form .post-btn:disabled:hover {
+  cursor: default;
   width: 140px;
-  border-radius: 6px;
+  border-radius: 40px;
   border: 0;
   font-size: 16px;
-  background-color: gray;
+  background-color: #c0bfcd;
+  color: #ffffff;
 }
 .create-post .form .post-btn {
+  cursor: pointer;
   grid-row: 5/6;
   width: 140px;
   border-radius: 6px;
@@ -345,6 +353,7 @@ body {
   border: 1px solid #9d9db5;
 }
 .create-post .form .post-btn:hover {
+  cursor: pointer;
   background-color: #ffffff;
   color: #0266ff;
   border: 1px solid #0266ff;
@@ -357,6 +366,54 @@ body {
   grid-column: 1/2;
   padding: 0;
   margin: 0;
+}
+.create-post .modal {
+  display: none;
+  z-index: 10;
+  background-color: rgba(49, 49, 49, 0.664);
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.create-post .modal .d-box {
+  height: 200px;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  border-radius: 40px;
+  border: 2px solid #0266ff;
+}
+.create-post .modal .d-box a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 16px 20px;
+  color: #9d9db5;
+  border-radius: 40px;
+  border: 1px solid #9d9db5;
+}
+.create-post .modal .d-box a:hover {
+  color: #0266ff;
+  border: 1px solid #0266ff;
+}
+.create-post .modal .d-box a:hover i {
+  color: #0266ff;
+}
+.create-post .modal .d-box a:active {
+  background-color: #0266ff;
+  color: #ffffff;
+}
+.create-post .modal .d-box a:active i {
+  color: #ffffff;
 }
 
 .selected {
@@ -376,18 +433,19 @@ body {
   border-radius: 10px;
 }
 .post .backButton {
-  width: 75px;
-  display: grid;
-  place-items: center;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   background-color: white;
   padding: 10px;
-  color: black;
+  color: #0266ff;
   text-decoration: none;
   border-radius: 40px;
-  border: 1px solid black;
   margin: 5px 0px;
   text-align: center;
-  font-size: 12px;
+  font-size: 1rem;
 }
 .post h1,
 .post h5 {
