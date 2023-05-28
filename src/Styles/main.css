@@ -522,10 +522,10 @@ body {
   gap: 20px;
 }
 .post .comment {
+  padding-top: 20px;
   background-color: white;
   color: black;
-  padding: 5px;
-  border-radius: 5px;
+  border-top: 1px solid #9d9db5;
 }
 
 .image-uploader:hover {
