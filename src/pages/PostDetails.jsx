@@ -8,10 +8,12 @@ function PostDetails() {
   const locationPathID = location.pathname.split("/");
   const indexNum = locationPathID.slice(locationPathID.length - 1).toString();
   const selectedPost = posts[indexNum - 1];
-  console.log(posts);
   return (
     <div className="post">
-      <NavLink to="/posts" className="backButton">{`<- Back`}</NavLink>
+      <NavLink to="/posts" className="backButton">
+        <i className="fa fa-arrow-left" aria-hidden="true"></i>
+        {`Back`}
+      </NavLink>
       <h1>{selectedPost.title}</h1>
       <img
         src={selectedPost.image}

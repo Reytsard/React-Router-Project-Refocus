@@ -1,11 +1,36 @@
-import React, { useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import { MyContext } from "../plugins/MyContext";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
 
-function Posts() {
-  const posts = useContext(MyContext);
-  // const mapPosts = useMemo(() => {});
+function Posts({ addPost }) {
+  let posts = useContext(MyContext);
+  const likeBtnHandler = (e, key) => {
+    e.preventDefault();
+    e.target.classList.toggle("fa-heart-o");
+    e.target.classList.toggle("fa-heart");
+    e.target.classList.toggle("active");
+    changeLikeCount(key);
+  };
+  const changeLikeCount = (key) => {
+    let post = posts.slice(key, key + 1);
+    if (post.length !== 0) {
+      if (post[0].isLiked) {
+        post[0].isLiked = false;
+        post[0].likes -= 1;
+      } else {
+        post[0].isLiked = true;
+        post[0].likes += 1;
+      }
+      const postsDup = [...posts];
+      postsDup.splice(key, 1, post[0]);
+      addPost(postsDup);
+    }
+  };
+  const likeButton = document.querySelectorAll(".likeButton");
+  likeButton.forEach((button) => {
+    button.addEventListener("click", likeBtnHandler);
+  });
   return (
     <div className="posts">
       <div className="options">
@@ -18,11 +43,12 @@ function Posts() {
           </Button>
         </div>
         <NavLink to="create-post" className="create-post-btn">
-          Create Post
+          <i className="fa fa-plus" aria-hidden="true"></i>
+          <div>Create Post</div>
         </NavLink>
       </div>
       <div className="cards">
-        {posts.map((post) => (
+        {posts.map((post, key) => (
           <NavLink to={`${post.id}`} key={post.id} className="card">
             <div className="card" key={post.id}>
               <div className="cardImg">
@@ -49,7 +75,19 @@ function Posts() {
                       {post.comments.length}
                     </div>
                     <div className="cardInfo-likes">
-                      <i className="fa fa-heart-o" aria-hidden="true"></i>
+                      {post.isLiked ? (
+                        <i
+                          className="likeButton fa fa-heart active"
+                          aria-hidden="true"
+                          onClick={(e) => likeBtnHandler(e, key)}
+                        ></i>
+                      ) : (
+                        <i
+                          className="likeButton fa fa-heart-o"
+                          aria-hidden="true"
+                          onClick={(e) => likeBtnHandler(e, key)}
+                        ></i>
+                      )}
                       {post.likes}
                     </div>
                   </div>

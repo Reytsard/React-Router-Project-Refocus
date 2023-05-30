@@ -209,6 +209,12 @@ body {
         .fa {
           font-size: 1rem;
         }
+        .active {
+          color: variables.$color9;
+        }
+      }
+      .cardInfo-likes i:hover {
+        color: variables.$color9;
       }
     }
   }
@@ -232,7 +238,11 @@ body {
     @include mixins.buttonHovered();
   }
   .create-post-btn {
-    padding: 13px 20px 13px 49px;
+    padding: 13px 10px 13px 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     color: variables.$color4;
     border-radius: 10px;
@@ -302,20 +312,24 @@ body {
       color: black;
       border: 1px solid black;
     }
-    .textBox {
+    .TextBox {
       grid-row: 3/4;
       width: 90%;
       background-color: white;
       color: black;
     }
-    .post-btn:disabled {
+    .post-btn:disabled,
+    .post-btn:disabled:hover {
+      cursor: default;
       width: 140px;
-      border-radius: 6px;
+      border-radius: 40px;
       border: 0;
       font-size: 16px;
-      background-color: gray;
+      background-color: variables.$color3;
+      color: variables.$color1;
     }
     .post-btn {
+      cursor: pointer;
       grid-row: 5/6;
       width: 140px;
       border-radius: 6px;
@@ -326,6 +340,7 @@ body {
       @include mixins.normalButton();
     }
     .post-btn:hover {
+      cursor: pointer;
       background-color: variables.$color1;
       color: variables.$color9;
       @include mixins.buttonHovered();
@@ -337,6 +352,44 @@ body {
       margin: 0;
     }
   }
+  .modal {
+    display: none;
+    z-index: 10;
+    background-color: rgba(49, 49, 49, 0.664);
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    .d-box {
+      height: 200px;
+      width: 400px;
+      background-color: variables.$color1;
+      padding: 20px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.5rem;
+      border-radius: 40px;
+      border: 2px solid variables.$color9;
+      a {
+        font-size: 1.2rem;
+        text-decoration: none;
+        @include mixins.normalButton();
+      }
+      a:hover {
+        color: variables.$color9;
+        @include mixins.buttonHovered();
+      }
+      a:active {
+        @include mixins.buttonActive();
+      }
+    }
+  }
 }
 .selected {
   color: variables.$color9;
@@ -346,6 +399,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 0.75fr;
   grid-template-rows: 50px 50px 100px 30px 100px 1fr;
+
   .postImage {
     margin-left: 40px;
     height: 320px;
@@ -353,18 +407,19 @@ body {
     border-radius: 10px;
   }
   .backButton {
-    width: 75px;
-    display: grid;
-    place-items: center;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     background-color: white;
     padding: 10px;
-    color: black;
+    color: variables.$color9;
     text-decoration: none;
     border-radius: 40px;
-    border: 1px solid black;
     margin: 5px 0px;
     text-align: center;
-    font-size: 12px;
+    font-size: 1rem;
   }
   h1,
   h5 {
@@ -397,14 +452,28 @@ body {
   .commentSection {
     grid-column: 1/2;
     grid-row: 6/8;
+
     .postLeaveComment {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      #postComment {
+        background-color: variables.$color1;
+      }
       .submitComment {
         width: 200px;
         height: 40px;
         align-self: flex-end;
+        @include mixins.normalButton();
+        padding: 0;
+        background-color: variables.$color1;
+      }
+      .submitComment:hover {
+        @include mixins.buttonHovered();
+        color: variables.$color9;
+      }
+      .submitComment:active {
+        @include mixins.buttonActive();
       }
     }
   }
@@ -418,10 +487,10 @@ body {
     gap: 20px;
   }
   .comment {
+    padding-top: 20px;
     background-color: white;
     color: black;
-    padding: 5px;
-    border-radius: 5px;
+    border-top: 1px solid variables.$color4;
   }
 }
 

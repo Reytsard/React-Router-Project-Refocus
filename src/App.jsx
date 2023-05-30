@@ -19,7 +19,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route path="posts" element={<Posts />} />
+        <Route path="posts" element={<Posts addPost={setPosts} />} />
         <Route path="posts/:id" element={<PostDetails />} />
         <Route
           path="posts/create-post"
