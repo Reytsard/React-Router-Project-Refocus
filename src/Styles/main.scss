@@ -206,6 +206,12 @@ body {
         .fa {
           font-size: 1rem;
         }
+        .active {
+          color: variables.$color9;
+        }
+      }
+      .cardInfo-likes i:hover {
+        color: variables.$color9;
       }
     }
   }

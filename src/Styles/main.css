@@ -214,6 +214,13 @@ body {
 .cards .card .cardInfo .cardInfo-likes .fa {
   font-size: 1rem;
 }
+.cards .card .cardInfo .cardInfo-comments .active,
+.cards .card .cardInfo .cardInfo-likes .active {
+  color: #0266ff;
+}
+.cards .card .cardInfo .cardInfo-likes i:hover {
+  color: #0266ff;
+}
 
 .card:hover {
   background-color: #d7f8ff;
