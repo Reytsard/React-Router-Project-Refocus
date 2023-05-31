@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MyContext } from "../plugins/MyContext";
 
-function PostDetails({ likeHandler, commentHandler }) {
+function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
   const posts = useContext(MyContext);
   const locationPathID = location.pathname.split("/");
   const indexNum = locationPathID.slice(locationPathID.length - 1).toString();
@@ -63,6 +63,9 @@ function PostDetails({ likeHandler, commentHandler }) {
       setComment("");
     }
   };
+  const commentLikeBtnHandler = (e, key, indexNum) => {
+    commentLikeHandler(e, key, indexNum);
+  };
   return (
     <div className="post">
       <NavLink to="/posts" className="backButton">
@@ -119,18 +122,32 @@ function PostDetails({ likeHandler, commentHandler }) {
         </div>
         <div className="commentsSection">
           <h3>Comments:</h3>
-          {selectedPost.comments.map((comment) => (
+          {selectedPost.comments.map((comment, key) => (
             <div
               className="comment"
               key={comment.text + comment.author + Math.random()}
             >
+              <div className="commentIgg"></div>
               <div className="commentAuthor">{comment.author}</div>
               <div className="commentText">{comment.text}</div>
               <div className="dateAndLikes">
                 <div className="commentDate">{comment.date}</div>
                 <div
-                  className={comment.isLiked ? "likedButton" : "defaultLike"}
+                // className={comment.isLiked ? "likedButton" : "defaultLike"}
                 >
+                  {comment.isLiked ? (
+                    <i
+                      className="likeButton fa fa-heart active"
+                      aria-hidden="true"
+                      onClick={(e) => commentLikeBtnHandler(e, key, indexNum)}
+                    ></i>
+                  ) : (
+                    <i
+                      className="likeButton fa fa-heart-o"
+                      aria-hidden="true"
+                      onClick={(e) => commentLikeBtnHandler(e, key, indexNum)}
+                    ></i>
+                  )}
                   {comment.likes}
                 </div>
               </div>

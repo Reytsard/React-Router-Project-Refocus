@@ -44,6 +44,25 @@ function App() {
     const newArr = [...leftSide, post, ...rightSide];
     setPosts(newArr);
   };
+  const commentLikeHandler = (e, indexNum, key) => {
+    e.preventDefault();
+    console.log(e.target);
+    e.target.classList.toggle("fa-heart-o");
+    e.target.classList.toggle("fa-heart");
+    e.target.classList.toggle("active");
+    const leftSide = posts.slice(0, key);
+    const rightSide = posts.slice(key + 1);
+    const post = posts.slice(key, key + 1)[0];
+    if (post.comments[indexNum].isLiked) {
+      post.comments[indexNum].isLiked = false;
+      post.comments[indexNum].likes--;
+    } else {
+      post.comments[indexNum].isLiked = true;
+      post.comments[indexNum].likes++;
+    }
+    const newArr = [...leftSide, post, ...rightSide];
+    setPosts(newArr);
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
@@ -54,6 +73,7 @@ function App() {
             <PostDetails
               likeHandler={likeHandler}
               commentHandler={commentHandler}
+              commentLikeHandler={commentLikeHandler}
             />
           }
         />
