@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useLoaderData } from "react-router-dom";
 import Button from "../components/Button";
 import { MyContext } from "../plugins/MyContext";
 
-function PostDetails() {
+function PostDetails({ likeHandler }) {
   const posts = useContext(MyContext);
   const locationPathID = location.pathname.split("/");
   const indexNum = locationPathID.slice(locationPathID.length - 1).toString();
   const selectedPost = posts[indexNum - 1];
+  const likeBtnHandler = (e) => {
+    likeHandler(e, indexNum - 1);
+  };
   return (
     <div className="post">
       <NavLink to="/posts" className="backButton">
@@ -26,8 +29,26 @@ function PostDetails() {
       </div>
       <div className="postText">{selectedPost.text}</div>
       <div className="likesAndComments">
-        <div className="postLikes"></div>
-        <div className="postComments"></div>
+        <div className="postComments">
+          <i className="fa fa-comments-o" aria-hidden="true"></i>
+          {selectedPost.comments.length}
+        </div>
+        <div className="postLikes">
+          {selectedPost.isLiked ? (
+            <i
+              className="likeButton fa fa-heart active"
+              aria-hidden="true"
+              onClick={likeBtnHandler}
+            ></i>
+          ) : (
+            <i
+              className="likeButton fa fa-heart-o"
+              aria-hidden="true"
+              onClick={likeBtnHandler}
+            ></i>
+          )}
+          {selectedPost.likes}
+        </div>
       </div>
       <div className="commentSection">
         <div className="postLeaveComment">
