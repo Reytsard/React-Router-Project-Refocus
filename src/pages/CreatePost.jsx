@@ -33,6 +33,38 @@ function CreatePost({ addPost }) {
       modalDisplay.setAttribute("style", "display:grid");
     }
   };
+  const getDate = () => {
+    const date = new Date();
+    const month = () => {
+      let month = date.getMonth();
+      return month == 0
+        ? "January"
+        : month == 1
+        ? "Febuary"
+        : month == 2
+        ? "March"
+        : month == 3
+        ? "April"
+        : month == 4
+        ? "May"
+        : month == 5
+        ? "June"
+        : month == 6
+        ? "July"
+        : month == 7
+        ? "August"
+        : month == 8
+        ? "September"
+        : month == 9
+        ? "October"
+        : month == 10
+        ? "November"
+        : "December";
+    };
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return month() + " " + day + ", " + year;
+  };
 
   const newPosts = () => {
     const post = {
@@ -40,7 +72,7 @@ function CreatePost({ addPost }) {
       title: title,
       text: textForPost,
       author: "arnold",
-      date: "Dec 1, 20000",
+      date: getDate(),
       likes: 0,
       isLiked: false,
       image: image,

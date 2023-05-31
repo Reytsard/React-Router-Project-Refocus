@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Route,
   RouterProvider,
@@ -16,11 +16,32 @@ import PostDetails from "./pages/PostDetails";
 
 function App() {
   const [posts, setPosts] = useState(postsData);
+  const likeHandler = (e, key) => {
+    e.preventDefault();
+    e.target.classList.toggle("fa-heart-o");
+    e.target.classList.toggle("fa-heart");
+    e.target.classList.toggle("active");
+    const leftSide = posts.slice(0, key);
+    const rightSide = posts.slice(key + 1);
+    const post = posts.slice(key, key + 1)[0];
+    if (post.isLiked) {
+      post.isLiked = false;
+      post.likes -= 1;
+    } else {
+      post.isLiked = true;
+      post.likes += 1;
+    }
+    const newArr = [...leftSide, post, ...rightSide];
+    setPosts(newArr);
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route path="posts" element={<Posts addPost={setPosts} />} />
-        <Route path="posts/:id" element={<PostDetails />} />
+        <Route
+          path="posts/:id"
+          element={<PostDetails likeHandler={likeHandler} />}
+        />
         <Route
           path="posts/create-post"
           element={<CreatePost addPost={setPosts} />}

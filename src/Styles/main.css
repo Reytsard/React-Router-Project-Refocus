@@ -423,7 +423,7 @@ body {
   color: #ffffff;
 }
 
-.selected {
+.active {
   color: #0266ff;
 }
 
@@ -431,7 +431,7 @@ body {
   padding: 60px 80px;
   display: grid;
   grid-template-columns: 1fr 0.75fr;
-  grid-template-rows: 50px 50px 100px 30px 100px 1fr;
+  grid-template-rows: 50px 50px 30px auto 30px 1fr;
 }
 .post .postImage {
   margin-left: 40px;
@@ -481,6 +481,10 @@ body {
 .post .likesAndComments {
   grid-column: 1/2;
   grid-row: 5/6;
+  display: flex;
+}
+.post .likesAndComments .postLikes {
+  margin-left: 20px;
 }
 .post .commentSection {
   grid-column: 1/2;
