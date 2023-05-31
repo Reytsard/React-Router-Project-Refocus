@@ -1,15 +1,67 @@
-import React, { useContext, useState } from "react";
-import { NavLink, useLoaderData } from "react-router-dom";
-import Button from "../components/Button";
+import React, { useCallback, useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { MyContext } from "../plugins/MyContext";
 
-function PostDetails({ likeHandler }) {
+function PostDetails({ likeHandler, commentHandler }) {
   const posts = useContext(MyContext);
   const locationPathID = location.pathname.split("/");
   const indexNum = locationPathID.slice(locationPathID.length - 1).toString();
   const selectedPost = posts[indexNum - 1];
   const likeBtnHandler = (e) => {
     likeHandler(e, indexNum - 1);
+  };
+  const [comment, setComment] = useState("");
+  const textCommentHandler = useCallback(
+    (e) => {
+      setComment(e.target.value);
+    },
+    [comment]
+  );
+  const getDate = () => {
+    const date = new Date();
+    const month = () => {
+      let month = date.getMonth();
+      return month == 0
+        ? "January"
+        : month == 1
+        ? "Febuary"
+        : month == 2
+        ? "March"
+        : month == 3
+        ? "April"
+        : month == 4
+        ? "May"
+        : month == 5
+        ? "June"
+        : month == 6
+        ? "July"
+        : month == 7
+        ? "August"
+        : month == 8
+        ? "September"
+        : month == 9
+        ? "October"
+        : month == 10
+        ? "November"
+        : "December";
+    };
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return month() + " " + day + ", " + year;
+  };
+  const sendBtnHandler = (e) => {
+    if (comment === "") {
+    } else {
+      const userComment = {
+        text: comment,
+        author: "ronald", //if real use with user's name
+        date: getDate(),
+        likes: 0,
+        isLiked: false,
+      };
+      commentHandler(e, indexNum - 1, userComment);
+      setComment("");
+    }
   };
   return (
     <div className="post">
@@ -58,15 +110,20 @@ function PostDetails({ likeHandler }) {
             id="postComment"
             cols="50"
             rows="10"
+            onChange={textCommentHandler}
+            value={comment}
           ></textarea>
-          <Button type="submit" name="submitComment">
+          <button className="submitComment" onClick={sendBtnHandler}>
             Send
-          </Button>
+          </button>
         </div>
         <div className="commentsSection">
           <h3>Comments:</h3>
           {selectedPost.comments.map((comment) => (
-            <div className="comment" key={comment.author}>
+            <div
+              className="comment"
+              key={comment.text + comment.author + Math.random()}
+            >
               <div className="commentAuthor">{comment.author}</div>
               <div className="commentText">{comment.text}</div>
               <div className="dateAndLikes">

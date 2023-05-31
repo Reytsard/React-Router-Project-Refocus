@@ -34,13 +34,28 @@ function App() {
     const newArr = [...leftSide, post, ...rightSide];
     setPosts(newArr);
   };
+  const commentHandler = (e, key, comment) => {
+    e.preventDefault();
+
+    const leftSide = posts.slice(0, key);
+    const rightSide = posts.slice(key + 1);
+    const post = posts.slice(key, key + 1)[0];
+    post.comments.push(comment);
+    const newArr = [...leftSide, post, ...rightSide];
+    setPosts(newArr);
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route path="posts" element={<Posts addPost={setPosts} />} />
         <Route
           path="posts/:id"
-          element={<PostDetails likeHandler={likeHandler} />}
+          element={
+            <PostDetails
+              likeHandler={likeHandler}
+              commentHandler={commentHandler}
+            />
+          }
         />
         <Route
           path="posts/create-post"
