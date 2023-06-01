@@ -44,21 +44,17 @@ function App() {
     const newArr = [...leftSide, post, ...rightSide];
     setPosts(newArr);
   };
-  const commentLikeHandler = (e, indexNum, key) => {
-    e.preventDefault();
-    console.log(e.target);
-    e.target.classList.toggle("fa-heart-o");
-    e.target.classList.toggle("fa-heart");
-    e.target.classList.toggle("active");
-    const leftSide = posts.slice(0, key);
-    const rightSide = posts.slice(key + 1);
-    const post = posts.slice(key, key + 1)[0];
-    if (post.comments[indexNum].isLiked) {
-      post.comments[indexNum].isLiked = false;
-      post.comments[indexNum].likes--;
+  const commentLikeHandler = (key, indexNum) => {
+    const leftSide = posts.slice(0, indexNum);
+    const rightSide = posts.slice(indexNum + 1);
+    const post = posts.slice(indexNum, indexNum + 1)[0];
+    console.log(post.comments[key]);
+    if (post.comments[key].isLiked) {
+      post.comments[key].isLiked = false;
+      post.comments[key].likes--;
     } else {
-      post.comments[indexNum].isLiked = true;
-      post.comments[indexNum].likes++;
+      post.comments[key].isLiked = true;
+      post.comments[key].likes++;
     }
     const newArr = [...leftSide, post, ...rightSide];
     setPosts(newArr);

@@ -479,6 +479,11 @@ body {
       .submitComment:active {
         @include mixins.buttonActive();
       }
+      .dateAndLikes {
+        .active {
+          color: variables.$color9;
+        }
+      }
     }
   }
   img {

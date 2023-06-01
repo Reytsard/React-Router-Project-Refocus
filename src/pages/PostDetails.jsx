@@ -64,7 +64,14 @@ function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
     }
   };
   const commentLikeBtnHandler = (e, key, indexNum) => {
-    commentLikeHandler(e, key, indexNum);
+    console.log("event: ", e);
+    console.log("comment key: ", key);
+    console.log("postNumber: ", indexNum);
+
+    e.target.classList.toggle("fa-heart-o");
+    e.target.classList.toggle("fa-heart");
+    e.target.classList.toggle("active");
+    commentLikeHandler(key, indexNum - 1);
   };
   return (
     <div className="post">
