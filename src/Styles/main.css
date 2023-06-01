@@ -260,10 +260,38 @@ body {
   color: #0266ff;
 }
 
+.posts {
+  padding: 0;
+}
 .posts .options {
+  padding: 40px 15px 20px 15px;
   display: flex;
   justify-content: space-between;
-  padding: 60px 80px 40px 80px;
+  align-items: center;
+}
+.posts .options .create-post-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #0266ff;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: 1px solid #0266ff;
+}
+.posts .options .create-post-btn i {
+  font-size: 1.2rem;
+}
+.posts .options .create-post-btn:hover {
+  border: 1px solid #0266ff;
+  color: #0266ff;
+}
+.posts .options .create-post-btn:active {
+  border: 1px solid #0266ff;
+  background-color: #0266ff;
+  color: #ffffff;
 }
 .posts .options div .active {
   background-color: #0266ff;
@@ -298,25 +326,8 @@ body {
 .posts .options .favorites-btn:active i {
   color: #ffffff;
 }
-.posts .options .create-post-btn {
-  padding: 13px 10px 13px 10px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #9d9db5;
-  border-radius: 10px;
-  border: 1px solid #9d9db5;
-}
-.posts .options .create-post-btn:hover {
-  border: 1px solid #0266ff;
-  color: #0266ff;
-}
-.posts .options .create-post-btn:active {
-  border: 1px solid #0266ff;
-  background-color: #0266ff;
-  color: #ffffff;
+.posts .options .create-post-btn div {
+  display: none;
 }
 
 .create-post {
@@ -478,105 +489,87 @@ body {
 }
 
 .post {
-  padding: 60px 80px;
+  padding: 40px 10px;
   display: grid;
-  grid-template-columns: 1fr 0.75fr;
-  grid-template-rows: 50px 50px 30px auto 30px 1fr;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 165px auto 24px auto 24px auto;
 }
-.post .postImage {
-  margin-left: 40px;
-  height: 320px;
-  width: 410px;
-  border-radius: 10px;
-}
-.post .backButton {
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-  padding: 10px;
-  color: #0266ff;
-  text-decoration: none;
-  border-radius: 40px;
-  margin: 5px 0px;
-  text-align: center;
-  font-size: 1rem;
-}
-.post h1,
-.post h5 {
-  margin: 0;
-  padding: 0;
+.post a {
+  display: none;
 }
 .post h1 {
-  grid-column: 1/2;
-  grid-row: 2/3;
+  padding: 0;
+  margin: 0;
+}
+.post img {
+  grid-row: 1/2;
+  height: 165px;
+  width: 300px;
+  border-radius: 10px;
+  justify-self: center;
 }
 .post .author {
-  grid-column: 1/2;
-  grid-row: 3/4;
   display: flex;
+  gap: 10px;
   align-items: center;
+  grid-row: 3/4;
 }
 .post .author h5 {
-  margin-right: 10px;
+  font-size: 9px;
+  padding: 0;
+  margin: 0;
+  color: #9d9db5;
 }
 .post .postText {
-  grid-column: 1/2;
   grid-row: 4/5;
-  display: grid;
-  align-items: center;
 }
 .post .likesAndComments {
-  grid-column: 1/2;
-  grid-row: 5/6;
   display: flex;
+  padding: 0 17.5px;
+  gap: 16px;
 }
+.post .likesAndComments i {
+  font-size: 21px;
+}
+.post .likesAndComments .postComments,
 .post .likesAndComments .postLikes {
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7.5px;
+  color: #9d9db5;
 }
 .post .commentSection {
-  grid-column: 1/2;
-  grid-row: 6/8;
-}
-.post .commentSection .comment {
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  grid-template-rows: 20px autho 20px 20px;
-}
-.post .commentSection .comment .commentImg {
-  border: 1px solid #9d9db5;
-  border-radius: 100%;
-  height: 36px;
-  width: 36px;
-}
-.post .commentSection .comment .commentAuthor,
-.post .commentSection .comment .commentText,
-.post .commentSection .comment .dateAndLikes {
-  grid-column: 2/3;
-}
-.post .commentSection .postLeaveComment {
+  grid-row: 6/7;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.post .commentSection .postLeaveComment {
+  display: grid;
+}
+.post .commentSection .postLeaveComment h3 {
+  margin: 0;
+  padding: 20px 0;
 }
 .post .commentSection .postLeaveComment #postComment {
-  background-color: #ffffff;
+  justify-self: center;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 .post .commentSection .postLeaveComment .submitComment {
-  width: 200px;
   height: 40px;
-  align-self: flex-end;
+  background-color: #9d9db5;
   border: 1px solid #9d9db5;
-  color: #9d9db5;
-  padding: 0;
-  background-color: #ffffff;
   border-radius: 6px;
+  color: #ffffff;
 }
 .post .commentSection .postLeaveComment .submitComment:hover {
   border: 1px solid #0266ff;
   color: #0266ff;
+  background-color: #ffffff;
 }
 .post .commentSection .postLeaveComment .submitComment:hover i {
   color: #0266ff;
@@ -588,23 +581,46 @@ body {
 .post .commentSection .postLeaveComment .submitComment:active i {
   color: #ffffff;
 }
-.post .commentSection .postLeaveComment .dateAndLikes .active {
-  color: #0266ff;
+.post .commentSection .commentsSection .comment {
+  display: grid;
+  grid-template-columns: 36px auto;
+  grid-template-rows: 20px auto 14px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding: 24px 0;
 }
-.post img {
+.post .commentSection .commentsSection .comment .commentImg {
+  grid-column: 1/2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #9d9db5;
+  border-radius: 100%;
+}
+.post .commentSection .commentsSection .comment .commentAuthor,
+.post .commentSection .commentsSection .comment .commentText,
+.post .commentSection .commentsSection .comment .dateAndLikes {
   grid-column: 2/3;
-  grid-row: 2/span 4;
 }
-.post .commentsSection {
+.post .commentSection .commentsSection .comment .commentAuthor {
+  font-size: 14px;
+  font-weight: bold;
+  color: #625f87;
+}
+.post .commentSection .commentsSection .comment .dateAndLikes {
+  margin-top: 14px;
   display: flex;
-  flex-direction: column;
   gap: 20px;
+  align-items: center;
+  color: #9d9db5;
 }
-.post .comment {
-  padding-top: 20px;
-  background-color: white;
-  color: black;
-  border-top: 1px solid #9d9db5;
+.post .commentSection .commentsSection .comment .dateAndLikes div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post .commentSection .commentsSection .comment .dateAndLikes div i {
+  font-size: 1.2rem;
+  margin-right: 5px;
 }
 
 .image-uploader:hover {
@@ -771,5 +787,148 @@ body {
     width: 30px;
     background-color: #192140;
     border-radius: 100%;
+  }
+  .posts .options {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 80px 40px 80px;
+  }
+  .posts .options .create-post-btn {
+    padding: 13px 10px 13px 10px;
+    border-radius: 10px;
+    width: auto;
+  }
+  .posts .options .create-post-btn div {
+    display: grid;
+    place-items: center;
+  }
+  .post {
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 0.75fr;
+    grid-template-rows: 50px 50px 30px auto 30px 1fr;
+  }
+  .post .postImage {
+    margin-left: 40px;
+    height: 320px;
+    width: 410px;
+    border-radius: 10px;
+  }
+  .post .backButton {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    color: #0266ff;
+    text-decoration: none;
+    border-radius: 40px;
+    margin: 5px 0px;
+    text-align: center;
+    font-size: 1rem;
+  }
+  .post h1,
+  .post h5 {
+    margin: 0;
+    padding: 0;
+  }
+  .post h1 {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  .post .author {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    display: flex;
+    align-items: center;
+  }
+  .post .author h5 {
+    margin-right: 10px;
+  }
+  .post .postText {
+    grid-column: 1/2;
+    grid-row: 4/5;
+    display: grid;
+    align-items: center;
+  }
+  .post .likesAndComments {
+    grid-column: 1/2;
+    grid-row: 5/6;
+    display: flex;
+  }
+  .post .likesAndComments .postLikes {
+    margin-left: 20px;
+  }
+  .post .commentSection {
+    grid-column: 1/2;
+    grid-row: 6/8;
+  }
+  .post .commentSection .comment {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    grid-template-rows: 20px autho 20px 20px;
+  }
+  .post .commentSection .comment .commentImg {
+    border: 1px solid #9d9db5;
+    border-radius: 100%;
+    height: 36px;
+    width: 36px;
+  }
+  .post .commentSection .comment .commentAuthor,
+  .post .commentSection .comment .commentText,
+  .post .commentSection .comment .dateAndLikes {
+    grid-column: 2/3;
+  }
+  .post .commentSection .postLeaveComment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .post .commentSection .postLeaveComment #postComment {
+    background-color: #ffffff;
+  }
+  .post .commentSection .postLeaveComment .submitComment {
+    width: 200px;
+    height: 40px;
+    align-self: flex-end;
+    border: 1px solid #9d9db5;
+    color: #9d9db5;
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+  }
+  .post .commentSection .postLeaveComment .submitComment:hover {
+    border: 1px solid #0266ff;
+    color: #0266ff;
+  }
+  .post .commentSection .postLeaveComment .submitComment:hover i {
+    color: #0266ff;
+  }
+  .post .commentSection .postLeaveComment .submitComment:active {
+    background-color: #0266ff;
+    color: #ffffff;
+  }
+  .post .commentSection .postLeaveComment .submitComment:active i {
+    color: #ffffff;
+  }
+  .post .commentSection .postLeaveComment .dateAndLikes .active {
+    color: #0266ff;
+  }
+  .post img {
+    grid-column: 2/3;
+    grid-row: 2/span 4;
+  }
+  .post .commentsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .post .comment {
+    padding-top: 20px;
+    background-color: white;
+    color: black;
+    border-top: 1px solid #9d9db5;
   }
 }/*# sourceMappingURL=main.css.map */

@@ -231,50 +231,60 @@ body {
     }
   }
 }
-
-.posts .options {
-  display: flex;
-  justify-content: space-between;
-  padding: 60px 80px 40px 80px;
-  div .active {
-    @include mixins.buttonActive();
-  }
-  .all-posts-btn,
-  .favorites-btn {
-    border-radius: 40px;
-    padding: 13px 20px;
-    border: 1px solid variables.$color9;
-    margin-right: 10px;
-    background-color: variables.$color1;
-    color: variables.$color9;
-  }
-  .all-posts-btn:hover,
-  .favorites-btn:hover {
-    @include mixins.buttonHovered();
-  }
-  .all-posts-btn:active,
-  .favorites-btn:active {
-    @include mixins.buttonActive();
-  }
-  .create-post-btn {
-    padding: 13px 10px 13px 10px;
+.posts {
+  padding: 0;
+  .options {
+    padding: 40px 15px 20px 15px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: variables.$color4;
-    border-radius: 10px;
-    border: 1px solid variables.$color4;
-  }
-  .create-post-btn:hover {
-    border: 1px solid variables.$color9;
-    color: variables.$color9;
-  }
-  .create-post-btn:active {
-    border: 1px solid variables.$color9;
-    background-color: variables.$color9;
-    color: variables.$color1;
+    .create-post-btn {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: variables.$color9;
+      height: 40px;
+      width: 40px;
+      border-radius: 100%;
+      border: 1px solid variables.$color9;
+      i {
+        font-size: 1.2rem;
+      }
+    }
+    .create-post-btn:hover {
+      border: 1px solid variables.$color9;
+      color: variables.$color9;
+    }
+    .create-post-btn:active {
+      border: 1px solid variables.$color9;
+      background-color: variables.$color9;
+      color: variables.$color1;
+    }
+    div .active {
+      @include mixins.buttonActive();
+    }
+    .all-posts-btn,
+    .favorites-btn {
+      border-radius: 40px;
+      padding: 13px 20px;
+      border: 1px solid variables.$color9;
+      margin-right: 10px;
+      background-color: variables.$color1;
+      color: variables.$color9;
+    }
+    .all-posts-btn:hover,
+    .favorites-btn:hover {
+      @include mixins.buttonHovered();
+    }
+    .all-posts-btn:active,
+    .favorites-btn:active {
+      @include mixins.buttonActive();
+    }
+    .create-post-btn div {
+      display: none;
+    }
   }
 }
 .create-post {
@@ -417,131 +427,133 @@ body {
   display: none;
 }
 .post {
-  padding: 60px 80px;
+  padding: 40px 10px;
   display: grid;
-  grid-template-columns: 1fr 0.75fr;
-  grid-template-rows: 50px 50px 30px auto 30px 1fr;
-
-  .postImage {
-    margin-left: 40px;
-    height: 320px;
-    width: 410px;
-    border-radius: 10px;
-  }
-  .backButton {
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: white;
-    padding: 10px;
-    color: variables.$color9;
-    text-decoration: none;
-    border-radius: 40px;
-    margin: 5px 0px;
-    text-align: center;
-    font-size: 1rem;
-  }
-  h1,
-  h5 {
-    margin: 0;
-    padding: 0;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 165px auto 24px auto 24px auto;
+  a {
+    display: none;
   }
   h1 {
-    grid-column: 1/2;
-    grid-row: 2/3;
+    padding: 0;
+    margin: 0;
+  }
+  img {
+    grid-row: 1/2;
+    height: 165px;
+    width: 300px;
+    border-radius: 10px;
+    justify-self: center;
   }
   .author {
-    grid-column: 1/2;
-    grid-row: 3/4;
     display: flex;
+    gap: 10px;
     align-items: center;
+    grid-row: 3/4;
     h5 {
-      margin-right: 10px;
+      font-size: 9px;
+      padding: 0;
+      margin: 0;
+      color: variables.$color4;
     }
   }
   .postText {
-    grid-column: 1/2;
     grid-row: 4/5;
-    display: grid;
-    align-items: center;
   }
   .likesAndComments {
-    grid-column: 1/2;
-    grid-row: 5/6;
     display: flex;
+    padding: 0 17.5px;
+    gap: 16px;
+    i {
+      font-size: 21px;
+    }
+    .postComments,
     .postLikes {
-      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 7.5px;
+      color: variables.$color4;
     }
   }
   .commentSection {
-    grid-column: 1/2;
-    grid-row: 6/8;
-    .comment {
-      display: grid;
-      grid-template-columns: 46px 1fr;
-      grid-template-rows: 20px autho 20px 20px;
-      .commentImg {
-        border: 1px solid variables.$color4;
-        border-radius: 100%;
-        height: 36px;
-        width: 36px;
-      }
-      .commentAuthor,
-      .commentText,
-      .dateAndLikes {
-        grid-column: 2/3;
-      }
-    }
+    grid-row: 6/7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     .postLeaveComment {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: grid;
+      h3 {
+        margin: 0;
+        padding: 20px 0;
+      }
       #postComment {
-        background-color: variables.$color1;
+        justify-self: center;
+        width: 100%;
+        border-radius: 6px;
+        margin-bottom: 10px;
       }
       .submitComment {
-        width: 200px;
         height: 40px;
-        align-self: flex-end;
+        background-color: variables.$color4;
         border: 1px solid variables.$color4;
-        color: variables.$color4;
-        padding: 0;
-        background-color: variables.$color1;
         border-radius: 6px;
+        color: variables.$color1;
       }
       .submitComment:hover {
         @include mixins.buttonHovered();
         color: variables.$color9;
+        background-color: variables.$color1;
       }
       .submitComment:active {
         @include mixins.buttonActive();
       }
-      .dateAndLikes {
-        .active {
-          color: variables.$color9;
+    }
+    .commentsSection {
+      .comment {
+        display: grid;
+        grid-template-columns: 36px auto;
+        grid-template-rows: 20px auto 14px;
+        column-gap: 10px;
+        padding: 24px 0;
+        .commentImg {
+          grid-column: 1/2;
+          width: 36px;
+          height: 36px;
+          border: 1px solid variables.$color4;
+          border-radius: 100%;
+        }
+        .commentAuthor,
+        .commentText,
+        .dateAndLikes {
+          grid-column: 2/3;
+        }
+        .commentAuthor {
+          font-size: 14px;
+          font-weight: bold;
+          color: #625f87;
+        }
+        .dateAndLikes {
+          margin-top: 14px;
+          display: flex;
+          gap: 20px;
+          align-items: center;
+          color: variables.$color4;
+          div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              font-size: 1.2rem;
+              margin-right: 5px;
+            }
+          }
         }
       }
     }
   }
-  img {
-    grid-column: 2/3;
-    grid-row: 2 / span 4;
-  }
-  .commentsSection {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .comment {
-    padding-top: 20px;
-    background-color: white;
-    color: black;
-    border-top: 1px solid variables.$color4;
-  }
 }
-
 .image-uploader:hover {
   opacity: 0.4;
   label {
@@ -699,6 +711,146 @@ body {
       width: 30px;
       background-color: variables.$color5;
       border-radius: 100%;
+    }
+  }
+  .posts .options {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 80px 40px 80px;
+    .create-post-btn {
+      padding: 13px 10px 13px 10px;
+      border-radius: 10px;
+      width: auto;
+    }
+    .create-post-btn div {
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  .post {
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 0.75fr;
+    grid-template-rows: 50px 50px 30px auto 30px 1fr;
+
+    .postImage {
+      margin-left: 40px;
+      height: 320px;
+      width: 410px;
+      border-radius: 10px;
+    }
+    .backButton {
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background-color: white;
+      padding: 10px;
+      color: variables.$color9;
+      text-decoration: none;
+      border-radius: 40px;
+      margin: 5px 0px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    h1,
+    h5 {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+    .author {
+      grid-column: 1/2;
+      grid-row: 3/4;
+      display: flex;
+      align-items: center;
+      h5 {
+        margin-right: 10px;
+      }
+    }
+    .postText {
+      grid-column: 1/2;
+      grid-row: 4/5;
+      display: grid;
+      align-items: center;
+    }
+    .likesAndComments {
+      grid-column: 1/2;
+      grid-row: 5/6;
+      display: flex;
+      .postLikes {
+        margin-left: 20px;
+      }
+    }
+    .commentSection {
+      grid-column: 1/2;
+      grid-row: 6/8;
+      .comment {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        grid-template-rows: 20px autho 20px 20px;
+        .commentImg {
+          border: 1px solid variables.$color4;
+          border-radius: 100%;
+          height: 36px;
+          width: 36px;
+        }
+        .commentAuthor,
+        .commentText,
+        .dateAndLikes {
+          grid-column: 2/3;
+        }
+      }
+      .postLeaveComment {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        #postComment {
+          background-color: variables.$color1;
+        }
+        .submitComment {
+          width: 200px;
+          height: 40px;
+          align-self: flex-end;
+          border: 1px solid variables.$color4;
+          color: variables.$color4;
+          padding: 0;
+          background-color: variables.$color1;
+          border-radius: 6px;
+        }
+        .submitComment:hover {
+          @include mixins.buttonHovered();
+          color: variables.$color9;
+        }
+        .submitComment:active {
+          @include mixins.buttonActive();
+        }
+        .dateAndLikes {
+          .active {
+            color: variables.$color9;
+          }
+        }
+      }
+    }
+    img {
+      grid-column: 2/3;
+      grid-row: 2 / span 4;
+    }
+    .commentsSection {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .comment {
+      padding-top: 20px;
+      background-color: white;
+      color: black;
+      border-top: 1px solid variables.$color4;
     }
   }
 }
