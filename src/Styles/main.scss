@@ -481,7 +481,7 @@ body {
     .comment {
       display: grid;
       grid-template-columns: 46px 1fr;
-      grid-template-rows: repeat(4, 20px);
+      grid-template-rows: 20px autho 20px 20px;
       .commentImg {
         border: 1px solid variables.$color4;
         border-radius: 100%;
