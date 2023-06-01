@@ -64,10 +64,6 @@ function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
     }
   };
   const commentLikeBtnHandler = (e, key, indexNum) => {
-    console.log("event: ", e);
-    console.log("comment key: ", key);
-    console.log("postNumber: ", indexNum);
-
     e.target.classList.toggle("fa-heart-o");
     e.target.classList.toggle("fa-heart");
     e.target.classList.toggle("active");
@@ -81,7 +77,7 @@ function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
       </NavLink>
       <h1>{selectedPost.title}</h1>
       <img
-        src={selectedPost.image}
+        src={`../public/images/1.png`}
         alt={`post-${selectedPost.id}`}
         className="postImage"
       />
@@ -134,14 +130,12 @@ function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
               className="comment"
               key={comment.text + comment.author + Math.random()}
             >
-              <div className="commentIgg"></div>
+              <div className="commentImg"></div>
               <div className="commentAuthor">{comment.author}</div>
               <div className="commentText">{comment.text}</div>
               <div className="dateAndLikes">
                 <div className="commentDate">{comment.date}</div>
-                <div
-                // className={comment.isLiked ? "likedButton" : "defaultLike"}
-                >
+                <div>
                   {comment.isLiked ? (
                     <i
                       className="likeButton fa fa-heart active"

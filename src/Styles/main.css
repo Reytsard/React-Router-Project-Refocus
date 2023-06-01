@@ -127,18 +127,30 @@ body {
   gap: 10px;
 }
 
-.cards a {
+.cards a,
+.favorite-posts a {
   text-decoration: none;
 }
-.cards a .card .cardInfo {
+.cards a .card .cardInfo,
+.favorite-posts a .card .cardInfo {
   background-color: #f8f9fc;
   border-radius: 0 0 6px 6px;
 }
-.cards a .card .cardInfo .cardInfo-texts .cardInfo-title {
+.cards a .card .cardInfo .cardInfo-texts .cardInfo-title,
+.favorite-posts a .card .cardInfo .cardInfo-texts .cardInfo-title {
   color: black;
 }
+.cards a .card:hover,
+.favorite-posts a .card:hover {
+  background-color: #d7f8ff;
+}
+.cards a .card:hover .cardInfo,
+.favorite-posts a .card:hover .cardInfo {
+  background-color: #d7f8ff;
+}
 
-.cards {
+.cards,
+.favorite-posts {
   height: 100%;
   margin: 0px 80px;
   display: flex;
@@ -148,7 +160,8 @@ body {
   gap: 10px;
   color: black;
 }
-.cards .card {
+.cards .card,
+.favorite-posts .card {
   width: 320px;
   height: 320px;
   background-color: #f8f9fc;
@@ -157,29 +170,37 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 165px 135px;
 }
-.cards .card .cardImg {
+.cards .card .cardImg,
+.favorite-posts .card .cardImg {
   grid-column: 1/2;
   grid-row: 1/2;
   height: 165px;
   width: 100%;
+  z-index: 1;
 }
-.cards .card .cardImg .cardImage {
+.cards .card .cardImg .cardImage,
+.favorite-posts .card .cardImg .cardImage {
   height: 250px;
   width: 320px;
   border-radius: 6px 6px 0 0;
 }
-.cards .card .cardInfo-texts .cardInfo-title {
+.cards .card .cardInfo-texts .cardInfo-title,
+.favorite-posts .card .cardInfo-texts .cardInfo-title {
   font-size: 20px;
   font-weight: 700;
 }
-.cards .card .cardInfo-texts .cardInfo-text {
+.cards .card .cardInfo-texts .cardInfo-text,
+.favorite-posts .card .cardInfo-texts .cardInfo-text {
   color: #625f87;
 }
-.cards .card .cardInfo-stats {
+.cards .card .cardInfo-stats,
+.favorite-posts .card .cardInfo-stats {
   font-size: 9px;
   color: #9d9db5;
 }
-.cards .card .cardInfo {
+.cards .card .cardInfo,
+.favorite-posts .card .cardInfo {
+  z-index: 2;
   grid-column: 1/2;
   grid-row: 2/3;
   padding: 10px 20px;
@@ -187,7 +208,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.cards .card .cardInfo .cardInfo-text {
+.cards .card .cardInfo .cardInfo-text,
+.favorite-posts .card .cardInfo .cardInfo-text {
   height: 40px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -196,39 +218,46 @@ body {
   text-overflow: ellipsis;
   font-size: 14px;
 }
-.cards .card .cardInfo .cardInfo-line {
+.cards .card .cardInfo .cardInfo-line,
+.favorite-posts .card .cardInfo .cardInfo-line {
   width: 100%;
   border: 0.5px solid #9d9db5;
   margin: 5px 0px;
 }
 .cards .card .cardInfo .cardInfo-stats,
 .cards .card .cardInfo .cardInfo-stats-dateAuthor,
-.cards .card .cardInfo .cardInfo-stats-commentLike {
+.cards .card .cardInfo .cardInfo-stats-commentLike,
+.favorite-posts .card .cardInfo .cardInfo-stats,
+.favorite-posts .card .cardInfo .cardInfo-stats-dateAuthor,
+.favorite-posts .card .cardInfo .cardInfo-stats-commentLike {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
 .cards .card .cardInfo .cardInfo-comments,
-.cards .card .cardInfo .cardInfo-likes {
+.cards .card .cardInfo .cardInfo-likes,
+.favorite-posts .card .cardInfo .cardInfo-comments,
+.favorite-posts .card .cardInfo .cardInfo-likes {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .cards .card .cardInfo .cardInfo-comments .fa,
-.cards .card .cardInfo .cardInfo-likes .fa {
+.cards .card .cardInfo .cardInfo-likes .fa,
+.favorite-posts .card .cardInfo .cardInfo-comments .fa,
+.favorite-posts .card .cardInfo .cardInfo-likes .fa {
   font-size: 1rem;
 }
 .cards .card .cardInfo .cardInfo-comments .active,
-.cards .card .cardInfo .cardInfo-likes .active {
+.cards .card .cardInfo .cardInfo-likes .active,
+.favorite-posts .card .cardInfo .cardInfo-comments .active,
+.favorite-posts .card .cardInfo .cardInfo-likes .active {
   color: #0266ff;
 }
-.cards .card .cardInfo .cardInfo-likes i:hover {
+.cards .card .cardInfo .cardInfo-likes i:hover,
+.favorite-posts .card .cardInfo .cardInfo-likes i:hover {
   color: #0266ff;
-}
-
-.card:hover {
-  background-color: #d7f8ff;
 }
 
 .posts .options {
@@ -236,18 +265,21 @@ body {
   justify-content: space-between;
   padding: 60px 80px 40px 80px;
 }
-.posts .options .all-posts-btn {
-  margin-right: 10px;
-  padding: 16px 20px;
-  color: #9d9db5;
-  border-radius: 40px;
-  border: 1px solid #9d9db5;
+.posts .options div .active {
+  background-color: #0266ff;
+  color: #ffffff;
 }
+.posts .options div .active i {
+  color: #ffffff;
+}
+.posts .options .all-posts-btn,
 .posts .options .favorites-btn {
-  padding: 16px 20px;
-  color: #9d9db5;
   border-radius: 40px;
-  border: 1px solid #9d9db5;
+  padding: 13px 20px;
+  border: 1px solid #0266ff;
+  margin-right: 10px;
+  background-color: #ffffff;
+  color: #0266ff;
 }
 .posts .options .all-posts-btn:hover,
 .posts .options .favorites-btn:hover {
@@ -256,6 +288,15 @@ body {
 .posts .options .all-posts-btn:hover i,
 .posts .options .favorites-btn:hover i {
   color: #0266ff;
+}
+.posts .options .all-posts-btn:active,
+.posts .options .favorites-btn:active {
+  background-color: #0266ff;
+  color: #ffffff;
+}
+.posts .options .all-posts-btn:active i,
+.posts .options .favorites-btn:active i {
+  color: #ffffff;
 }
 .posts .options .create-post-btn {
   padding: 13px 10px 13px 10px;
@@ -432,6 +473,10 @@ body {
   color: #0266ff;
 }
 
+.favorite-posts {
+  display: none;
+}
+
 .post {
   padding: 60px 80px;
   display: grid;
@@ -495,6 +540,22 @@ body {
   grid-column: 1/2;
   grid-row: 6/8;
 }
+.post .commentSection .comment {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  grid-template-rows: repeat(4, 20px);
+}
+.post .commentSection .comment .commentImg {
+  border: 1px solid #9d9db5;
+  border-radius: 100%;
+  height: 36px;
+  width: 36px;
+}
+.post .commentSection .comment .commentAuthor,
+.post .commentSection .comment .commentText,
+.post .commentSection .comment .dateAndLikes {
+  grid-column: 2/3;
+}
 .post .commentSection .postLeaveComment {
   display: flex;
   flex-direction: column;
@@ -507,12 +568,11 @@ body {
   width: 200px;
   height: 40px;
   align-self: flex-end;
-  padding: 16px 20px;
-  color: #9d9db5;
-  border-radius: 40px;
   border: 1px solid #9d9db5;
+  color: #9d9db5;
   padding: 0;
   background-color: #ffffff;
+  border-radius: 6px;
 }
 .post .commentSection .postLeaveComment .submitComment:hover {
   border: 1px solid #0266ff;
@@ -527,6 +587,9 @@ body {
 }
 .post .commentSection .postLeaveComment .submitComment:active i {
   color: #ffffff;
+}
+.post .commentSection .postLeaveComment .dateAndLikes .active {
+  color: #0266ff;
 }
 .post img {
   grid-column: 2/3;

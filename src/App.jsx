@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -48,7 +49,6 @@ function App() {
     const leftSide = posts.slice(0, indexNum);
     const rightSide = posts.slice(indexNum + 1);
     const post = posts.slice(indexNum, indexNum + 1)[0];
-    console.log(post.comments[key]);
     if (post.comments[key].isLiked) {
       post.comments[key].isLiked = false;
       post.comments[key].likes--;
@@ -61,7 +61,7 @@ function App() {
   };
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
+      <Route element={<RootLayout />}>
         <Route path="posts" element={<Posts addPost={setPosts} />} />
         <Route
           path="posts/:id"
@@ -77,6 +77,7 @@ function App() {
           path="posts/create-post"
           element={<CreatePost addPost={setPosts} />}
         />
+        <Route path="*" element={<Navigate to="/posts" replace />} />
       </Route>
     )
   );

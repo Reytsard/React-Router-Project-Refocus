@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { MyContext } from "../plugins/MyContext";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
@@ -31,29 +31,87 @@ function Posts({ addPost }) {
   likeButton.forEach((button) => {
     button.addEventListener("click", likeBtnHandler);
   });
-  return (
-    <div className="posts">
-      <div className="options">
-        <div>
-          <Button type="button" name="all-posts-btn">
-            All Posts
-          </Button>
-          <Button type="button" name="favorites-btn">
-            Favorites
-          </Button>
-        </div>
-        <NavLink to="create-post" className="create-post-btn">
-          <i className="fa fa-plus" aria-hidden="true"></i>
-          <div>Create Post</div>
+  let postsDup = useMemo(
+    () =>
+      posts.map((post, key) => (
+        <NavLink to={`${post.id}`} key={post.id} className="card">
+          <div className="card" key={post.id}>
+            <div className="cardImg">
+              <img
+                src={
+                  post.image === undefined ? `./src/images/1.png` : post.image
+                }
+                alt={`post-${post.id}`}
+                className="cardImage"
+              />
+            </div>
+            <div className="cardInfo">
+              <div className="cardInfo-texts">
+                <div className="cardInfo-title">{post.title}</div>
+                <div className="cardInfo-text">{post.text}</div>
+              </div>
+              <div className="cardInfo-line"></div>
+              <div className="cardInfo-stats">
+                <div className="cardInfo-stats-dateAuthor">
+                  <div className="stats-date">{post.date}</div>·
+                  <div className="stats-author">{post.author}</div>
+                </div>
+                <div className="cardInfo-stats-commentLike">
+                  <div className="cardInfo-comments">
+                    <i className="fa fa-comments-o" aria-hidden="true"></i>
+                    {post.comments.length}
+                  </div>
+                  <div className="cardInfo-likes">
+                    {post.isLiked ? (
+                      <i
+                        className="likeButton fa fa-heart active"
+                        aria-hidden="true"
+                        onClick={(e) => likeBtnHandler(e, key)}
+                      ></i>
+                    ) : (
+                      <i
+                        className="likeButton fa fa-heart-o"
+                        aria-hidden="true"
+                        onClick={(e) => likeBtnHandler(e, key)}
+                      ></i>
+                    )}
+                    {post.likes}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </NavLink>
-      </div>
-      <div className="cards">
-        {posts.map((post, key) => (
+      )),
+    [posts, likeBtnHandler, NavLink]
+  );
+  const toggleActiveAllPosts = (e) => {
+    e.target.classList.add("active");
+    document.querySelector(".favorites-btn").classList.remove("active");
+
+    document.querySelector(".cards").setAttribute("style", "display:flex");
+    document
+      .querySelector(".favorite-posts")
+      .setAttribute("style", "display:none");
+  };
+  const toggleFavoritePosts = (e) => {
+    e.target.classList.add("active");
+    document.querySelector(".all-posts-btn").classList.remove("active");
+    document.querySelector(".cards").setAttribute("style", "display:none");
+    document
+      .querySelector(".favorite-posts")
+      .setAttribute("style", "display:flex");
+  };
+  const favoritePosts = useMemo(
+    () =>
+      posts
+        .filter((post) => post.isLiked)
+        .map((post, key) => (
           <NavLink to={`${post.id}`} key={post.id} className="card">
             <div className="card" key={post.id}>
               <div className="cardImg">
                 <img
-                  src={post.image}
+                  src={`./src/images/1.png`}
                   alt={`post-${post.id}`}
                   className="cardImage"
                 />
@@ -95,9 +153,35 @@ function Posts({ addPost }) {
               </div>
             </div>
           </NavLink>
-        ))}
+        )),
+    [NavLink, posts, likeBtnHandler]
+  );
+  return (
+    <div className="posts">
+      <div className="options">
+        <div>
+          <button
+            type="button"
+            className="all-posts-btn active"
+            onClick={toggleActiveAllPosts}
+          >
+            All Posts
+          </button>
+          <button
+            type="button"
+            className="favorites-btn"
+            onClick={toggleFavoritePosts}
+          >
+            Favorites
+          </button>
+        </div>
+        <NavLink to="create-post" className="create-post-btn">
+          <i className="fa fa-plus" aria-hidden="true"></i>
+          <div>Create Post</div>
+        </NavLink>
       </div>
-      <div className="favorite-cards"></div>
+      <div className="cards">{postsDup}</div>
+      <div className="favorite-posts">{favoritePosts}</div>
     </div>
   );
 }

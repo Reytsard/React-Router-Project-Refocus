@@ -115,12 +115,14 @@ body {
     }
   }
 }
-.cards a {
+.cards a,
+.favorite-posts a {
   text-decoration: none;
   .card {
     .cardInfo {
       background-color: variables.$color2;
       border-radius: 0 0 6px 6px;
+
       .cardInfo-texts {
         .cardInfo-title {
           color: black;
@@ -128,8 +130,15 @@ body {
       }
     }
   }
+  .card:hover {
+    background-color: #d7f8ff;
+    .cardInfo {
+      background-color: #d7f8ff;
+    }
+  }
 }
-.cards {
+.cards,
+.favorite-posts {
   height: 100%;
   margin: 0px 80px;
   display: flex;
@@ -138,6 +147,7 @@ body {
   align-items: center;
   gap: 10px;
   color: black;
+
   .card {
     width: 320px;
     height: 320px;
@@ -152,6 +162,7 @@ body {
       grid-row: 1/2;
       height: 165px;
       width: 100%;
+      z-index: 1;
       .cardImage {
         height: 250px;
         width: 320px;
@@ -172,6 +183,7 @@ body {
       color: variables.$color4;
     }
     .cardInfo {
+      z-index: 2;
       grid-column: 1/2;
       grid-row: 2/3;
       padding: 10px 20px;
@@ -219,23 +231,30 @@ body {
     }
   }
 }
-.card:hover {
-  background-color: #d7f8ff;
-}
+
 .posts .options {
   display: flex;
   justify-content: space-between;
   padding: 60px 80px 40px 80px;
-  .all-posts-btn {
-    margin-right: 10px;
-    @include mixins.normalButton();
+  div .active {
+    @include mixins.buttonActive();
   }
+  .all-posts-btn,
   .favorites-btn {
-    @include mixins.normalButton();
+    border-radius: 40px;
+    padding: 13px 20px;
+    border: 1px solid variables.$color9;
+    margin-right: 10px;
+    background-color: variables.$color1;
+    color: variables.$color9;
   }
   .all-posts-btn:hover,
   .favorites-btn:hover {
     @include mixins.buttonHovered();
+  }
+  .all-posts-btn:active,
+  .favorites-btn:active {
+    @include mixins.buttonActive();
   }
   .create-post-btn {
     padding: 13px 10px 13px 10px;
@@ -394,6 +413,9 @@ body {
 .active {
   color: variables.$color9;
 }
+.favorite-posts {
+  display: none;
+}
 .post {
   padding: 60px 80px;
   display: grid;
@@ -456,7 +478,22 @@ body {
   .commentSection {
     grid-column: 1/2;
     grid-row: 6/8;
-
+    .comment {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      grid-template-rows: repeat(4, 20px);
+      .commentImg {
+        border: 1px solid variables.$color4;
+        border-radius: 100%;
+        height: 36px;
+        width: 36px;
+      }
+      .commentAuthor,
+      .commentText,
+      .dateAndLikes {
+        grid-column: 2/3;
+      }
+    }
     .postLeaveComment {
       display: flex;
       flex-direction: column;
@@ -468,9 +505,11 @@ body {
         width: 200px;
         height: 40px;
         align-self: flex-end;
-        @include mixins.normalButton();
+        border: 1px solid variables.$color4;
+        color: variables.$color4;
         padding: 0;
         background-color: variables.$color1;
+        border-radius: 6px;
       }
       .submitComment:hover {
         @include mixins.buttonHovered();
