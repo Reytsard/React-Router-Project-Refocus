@@ -1,22 +1,8 @@
 import React, { useContext, useMemo, useState } from "react";
 import { MyContext } from "../plugins/MyContext";
-import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
-import image1 from "../../public/images/1.png";
-// import image2 from "../../public/images/2.png";
-// import image3 from "../../public/images/3.png";
-// import image4 from "../../public/images/4.png";
-// import image5 from "../../public/images/5.png";
-// import image6 from "../../public/images/6.png";
-// import image7 from "../../public/images/7.png";
-// import image8 from "../../public/images/8.png";
-// import image9 from "../../public/images/9.png";
-// import image10 from "../../public/images/10.png";
-// import image11 from "../../public/images/11.png";
-// import image12 from "../../public/images/12.png";
 
 function Posts({ addPost }) {
-  const [imageNum, setImageNum] = useState(1);
   let posts = useContext(MyContext);
   const likeBtnHandler = (e, key) => {
     e.preventDefault();
