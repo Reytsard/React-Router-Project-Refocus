@@ -1,9 +1,22 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { MyContext } from "../plugins/MyContext";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
+import image1 from "../../public/images/1.png";
+// import image2 from "../../public/images/2.png";
+// import image3 from "../../public/images/3.png";
+// import image4 from "../../public/images/4.png";
+// import image5 from "../../public/images/5.png";
+// import image6 from "../../public/images/6.png";
+// import image7 from "../../public/images/7.png";
+// import image8 from "../../public/images/8.png";
+// import image9 from "../../public/images/9.png";
+// import image10 from "../../public/images/10.png";
+// import image11 from "../../public/images/11.png";
+// import image12 from "../../public/images/12.png";
 
 function Posts({ addPost }) {
+  const [imageNum, setImageNum] = useState(1);
   let posts = useContext(MyContext);
   const likeBtnHandler = (e, key) => {
     e.preventDefault();
@@ -31,60 +44,62 @@ function Posts({ addPost }) {
   likeButton.forEach((button) => {
     button.addEventListener("click", likeBtnHandler);
   });
-  let postsDup = useMemo(
-    () =>
-      posts.map((post, key) => (
-        <NavLink to={`${post.id}`} key={post.id} className="card">
-          <div className="card" key={post.id}>
-            <div className="cardImg">
-              <img
-                src={
-                  post.image === undefined ? `./src/images/1.png` : post.image
-                }
-                alt={`post-${post.id}`}
-                className="cardImage"
-              />
+  let postsDup = useMemo(() => {
+    return posts.map((post, key) => (
+      <NavLink to={`${post.id}`} key={post.id} className="card">
+        <div className="card" key={post.id}>
+          <div className="cardImg">
+            <img
+              src={
+                post.image === undefined
+                  ? post.id > 12
+                    ? `../../public/images/${post.id - 12}.png`
+                    : `../../public/images/${post.id}.png`
+                  : post.image
+              }
+              alt={`post-${post.id}`}
+              className="cardImage"
+            />
+          </div>
+          <div className="cardInfo">
+            <div className="cardInfo-texts">
+              <div className="cardInfo-title">{post.title}</div>
+              <div className="cardInfo-text">{post.text}</div>
             </div>
-            <div className="cardInfo">
-              <div className="cardInfo-texts">
-                <div className="cardInfo-title">{post.title}</div>
-                <div className="cardInfo-text">{post.text}</div>
+            <div className="cardInfo-line"></div>
+            <div className="cardInfo-stats">
+              <div className="cardInfo-stats-dateAuthor">
+                <div className="stats-date">{post.date}</div>·
+                <div className="stats-author">{post.author}</div>
               </div>
-              <div className="cardInfo-line"></div>
-              <div className="cardInfo-stats">
-                <div className="cardInfo-stats-dateAuthor">
-                  <div className="stats-date">{post.date}</div>·
-                  <div className="stats-author">{post.author}</div>
+              <div className="cardInfo-stats-commentLike">
+                <div className="cardInfo-comments">
+                  <i className="fa fa-comments-o" aria-hidden="true"></i>
+                  {post.comments.length}
                 </div>
-                <div className="cardInfo-stats-commentLike">
-                  <div className="cardInfo-comments">
-                    <i className="fa fa-comments-o" aria-hidden="true"></i>
-                    {post.comments.length}
-                  </div>
-                  <div className="cardInfo-likes">
-                    {post.isLiked ? (
-                      <i
-                        className="likeButton fa fa-heart active"
-                        aria-hidden="true"
-                        onClick={(e) => likeBtnHandler(e, key)}
-                      ></i>
-                    ) : (
-                      <i
-                        className="likeButton fa fa-heart-o"
-                        aria-hidden="true"
-                        onClick={(e) => likeBtnHandler(e, key)}
-                      ></i>
-                    )}
-                    {post.likes}
-                  </div>
+                <div className="cardInfo-likes">
+                  {post.isLiked ? (
+                    <i
+                      className="likeButton fa fa-heart active"
+                      aria-hidden="true"
+                      onClick={(e) => likeBtnHandler(e, key)}
+                    ></i>
+                  ) : (
+                    <i
+                      className="likeButton fa fa-heart-o"
+                      aria-hidden="true"
+                      onClick={(e) => likeBtnHandler(e, key)}
+                    ></i>
+                  )}
+                  {post.likes}
                 </div>
               </div>
             </div>
           </div>
-        </NavLink>
-      )),
-    [posts, likeBtnHandler, NavLink]
-  );
+        </div>
+      </NavLink>
+    ));
+  }, [posts, likeBtnHandler, NavLink]);
   const toggleActiveAllPosts = (e) => {
     e.target.classList.add("active");
     document.querySelector(".favorites-btn").classList.remove("active");
