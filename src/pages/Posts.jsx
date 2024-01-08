@@ -112,7 +112,7 @@ function Posts({ addPost }) {
             <div className="card" key={post.id}>
               <div className="cardImg">
                 <img
-                  src={`./src/images/1.png`}
+                  src={`./src/images/${post.id % 11}.png`}
                   alt={`post-${post.id}`}
                   className="cardImage"
                 />
