@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://reytsard.github.io/React-Router-Project-Refocus/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

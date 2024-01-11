@@ -1,10 +1,12 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
+  redirect,
+  useNavigate,
 } from "react-router-dom";
 import postsData from "./posts.json";
 import RootLayout from "./layouts/RootLayout";
@@ -61,7 +63,7 @@ function App() {
   };
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<RootLayout />}>
+      <Route path="React-Router-Project-Refocus" element={<RootLayout />}>
         <Route path="posts" element={<Posts addPost={setPosts} />} />
         <Route
           path="posts/:id"
@@ -77,7 +79,12 @@ function App() {
           path="posts/create-post"
           element={<CreatePost addPost={setPosts} />}
         />
-        <Route path="*" element={<Navigate to="/posts" replace />} />
+        <Route
+          path="*"
+          element={
+            <Navigate to="/React-Router-Project-Refocus/posts" replace />
+          }
+        />
       </Route>
     )
   );
