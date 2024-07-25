@@ -71,7 +71,7 @@ function PostDetails({ likeHandler, commentHandler, commentLikeHandler }) {
   };
   return (
     <div className="post">
-      <NavLink to="/posts" className="backButton">
+      <NavLink to="/React-Router-Project-Refocus/posts" className="backButton">
         <i className="fa fa-arrow-left" aria-hidden="true"></i>
         {`Back`}
       </NavLink>
